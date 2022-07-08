@@ -18,9 +18,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        //Obtain an instance of the SharedPreferences
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        //Obtain an instance of the SharedPreference Editor for update later
         SharedPreferences.Editor prefEdit = prefs.edit();
+        //Add the key-value pair
         prefEdit.putString("greetings", "Hello!");
+        //Call commit () to save the changes into SharedPreferences
         prefEdit.commit();
     }
 
@@ -29,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         //String msg = "No greetings!";
+
+        //Obtain an instance of the SharedPreferences
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        //Retrieve the saved data from the SharedPreferences object
         String msg = prefs.getString("greetings", "No greetings name");
+        //Update the UI element with the value
         Toast toast = Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG);
         toast.show();
     }
